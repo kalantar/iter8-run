@@ -1,5 +1,10 @@
 name: 'Run Iter8 Experiment'
 description: 'Run an Iter8 experiment'
+
+inputs:
+
+outputs:
+
 runs:
   using: 'docker'
   image: 'kalantar/iter8cli:20211102-1500'
