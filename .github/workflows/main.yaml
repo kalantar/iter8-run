@@ -10,5 +10,5 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - name: run experiment
-      uses: kalantar/iter8-run
+      uses: kalantar/iter8-run@main
 
