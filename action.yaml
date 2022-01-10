@@ -4,8 +4,19 @@ inputs:
   url:
     description: 'Application endpoint'
     required: true
+    default: http://example.com
+  mean-latency:
+    description: 'Maximum allowable mean latency'
+    required: false
+    default: "50"
+  p95-latency:
+    description: 'Maximum allowable 95th-percentile latency'
+    required: false
+    default: "100"
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
   - ${{ inputs.url }}
+  - ${{ inputs.mean-latency }}
+  - ${{ inputs.p95-latency }}
