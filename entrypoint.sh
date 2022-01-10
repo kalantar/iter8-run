@@ -20,8 +20,8 @@ cd load-test
 echo "Modify experiment using inputs"
 $ITER8 gen exp \
   --set url=${INPUT_URL} \
-  --set mean-latency=${INPUT_MEAN_LATENCY} \
-  --set p95-latency=${INPUT_P95_LATENCY}
+  --set mean-latency=${INPUT_MEAN-LATENCY} \
+  --set p95-latency=${INPUT_P95-LATENCY}
 cat experiment.yaml
 
 echo "Run Experiment"
