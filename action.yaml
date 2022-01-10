@@ -1,12 +1,11 @@
-name: 'Run Iter8 Experiment'
-description: 'Run an Iter8 experiment'
+name: 'Run Iter8 Load Test'
+description: 'Run an Iter8 load test experiment'
 inputs:
-  experiment:
-    description: 'Experiment YAML'
-    required: false
-    default: 'experiment.yaml'
+  url:
+    description: 'Application endpoint'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-  - ${{ inputs.experiment }}
+  - ${{ inputs.url }}

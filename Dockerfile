@@ -1,4 +1,4 @@
-FROM kalantar/iter8cli:pr-1040-1
+FROM iter8/iter8
 
 COPY entrypoint.sh /entrypoint.sh
 

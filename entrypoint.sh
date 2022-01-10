@@ -1,6 +1,7 @@
 #!/bin/bash -l
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ITER8="/bin/iter8"
 
 echo "Creating working directory"
 
@@ -12,15 +13,23 @@ fi
 
 # no need to cleanup
 
-echo "Copying experiment definition"
-mv "${1}" ${WORK_DIR}/experiment.yaml
-cd ${WORK_DIR}
+echo "Fetch basic experiment"
+$ITER8 hub -e load-test
+cd load-test
 
-echo "Running Experiment"
-/bin/iter8 run
+echo "Modify experiment using inputs"
+$ITER8 gen exp --set url=${INPUT_URL}
+cat experiment.yaml
+
+echo "Run Experiment"
+LOG_LEVEL=trace $ITER8 run
+
+echo "Log result"
+$ITER8 report
 
 echo "Run completed; verifying completeness"
-/bin/iter8 assert -c completed -c noFailure
+# return 0 if satisfied; else non-zero
+$ITER8 assert -c completed -c noFailure -c slos
 rc=$?
 
 echo "Return code: $rc"

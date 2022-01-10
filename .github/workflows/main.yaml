@@ -1,19 +1,19 @@
-name: Test Iter8 Experiment Action
-on: [push]
+# name: Test Iter8 Experiment Action
+# on: [push]
   
 
-jobs:
-  iter8_run_job:
-    name: Run Iter8 Experiment
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout
-      uses: actions/checkout@v2
-      with:
-        repository: 'iter8-tools/iter8'
-        ref: 'pull/1040/head'
-    - name: run experiment
-      uses: kalantar/iter8-run@main
-      with:
-        experiment: testdata/experiment.yaml
+# jobs:
+#   iter8_run_job:
+#     name: Run Iter8 Experiment
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: checkout
+#       uses: actions/checkout@v2
+#       with:
+#         repository: 'iter8-tools/iter8'
+#         ref: 'pull/1040/head'
+#     - name: run experiment
+#       uses: kalantar/iter8-run@main
+#       with:
+#         experiment: testdata/experiment.yaml
 
