@@ -18,7 +18,7 @@ $ITER8 hub -e load-test
 cd load-test
 
 echo "Modify experiment using inputs"
-yq eval -i ".url = \"${INPUT_URL}\" |  .SLOs[2].upperLimit = ${INPUT_P95_LATENCY}" values.yaml
+yq eval -i ".url = \"${INPUT_URL}\" |  .SLOs[1].upperLimit = ${INPUT_MEAN_LATENCY} | .SLOs[2].upperLimit = ${INPUT_P95_LATENCY}" values.yaml
 cat values.yaml
 $ITER8 run --dry
 cat experiment.yaml
