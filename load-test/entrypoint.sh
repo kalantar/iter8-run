@@ -18,44 +18,44 @@ $ITER8 hub -e load-test
 cd load-test
 
 echo "Modify experiment using inputs"
-if [[ -v "${INPUT_URL}" ]]; then
+if [[ ! -z "${INPUT_URL}" ]]; then
   yq eval -i ".url = \"${INPUT_URL}\"" values.yaml
 fi
-if [[ -v "${NUMQUERIES}" ]]; then
-  yq eval -i ".numQueries = \"${NUMQUERIES}\"" values.yaml
+if [[ ! -z "${INPUT_NUMQUERIES}" ]]; then
+  yq eval -i ".numQueries = \"${INPUT_NUMQUERIES}\"" values.yaml
 fi
-if [[ -v "${DURATION}" ]]; then
-  yq eval -i ".duration = \"${DURATION}\"" values.yaml
+if [[ ! -z "${INPUT_DURATION}" ]]; then
+  yq eval -i ".duration = \"${INPUT_DURATION}\"" values.yaml
 fi
-if [[ -v "${QPS}" ]]; then
+if [[ ! -z "${INPUT_QPS}" ]]; then
   yq eval -i ".qps = \"${QPS}\"" values.yaml
 fi
-if [[ -v "${CONNECTIONS}" ]]; then
-  yq eval -i ".connections = \"${CONNECTIONS}\"" values.yaml
+if [[ ! -z "${INPUT_CONNECTIONS}" ]]; then
+  yq eval -i ".connections = \"${INPUT_CONNECTIONS}\"" values.yaml
 fi
-if [[ -v "${PAYLOADSTR}" ]]; then
-  yq eval -i ".payloadStr = \"${PAYLOADSTR}\"" values.yaml
+if [[ ! -z "${INPUT_PAYLOADSTR}" ]]; then
+  yq eval -i ".payloadStr = \"${INPUT_PAYLOADSTR}\"" values.yaml
 fi
-if [[ -v "${PAYLOADURL}" ]]; then
-  yq eval -i ".payloadUrl = \"${PAYLOADURL}\"" values.yaml
+if [[ ! -z "${INPUT_PAYLOADURL}" ]]; then
+  yq eval -i ".payloadUrl = \"${INPUT_PAYLOADURL}\"" values.yaml
 fi
-if [[ -v "${CONTENTTYPE}" ]]; then
-  yq eval -i ".contentType = \"${CONTENTTYPE}\"" values.yaml
+if [[ ! -z "${INPUT_CONTENTTYPE}" ]]; then
+  yq eval -i ".contentType = \"${INPUT_CONTENTTYPE}\"" values.yaml
 fi
-if [[ -v "${ERRORRANGES}" ]]; then
-  yq eval -i ".errorRanges = \"${ERRORRANGES}\"" values.yaml
+if [[ ! -z "${INPUT_ERRORRANGES}" ]]; then
+  yq eval -i ".errorRanges = \"${INPUT_ERRORRANGES}\"" values.yaml
 fi
-if [[ -v "${PERCENTILES}" ]]; then
-  yq eval -i ".percentiles = \"${PERCENTILES}\"" values.yaml
+if [[ ! -z "${INPUT_PERCENTILES}" ]]; then
+  yq eval -i ".percentiles = \"${INPUT_PERCENTILES}\"" values.yaml
 fi
-if [[ -v "${ERROR_RATE}" ]]; then
-  yq eval -i ".error-rate = \"${ERROR_RATE}\"" values.yaml
+if [[ ! -z "${INPUT_ERROR_RATE}" ]]; then
+  yq eval -i ".error-rate = \"${INPUT_ERROR_RATE}\"" values.yaml
 fi
-if [[ -v "${MEAN_LATENCY}" ]]; then
-  yq eval -i ".mean-latency = \"${MEAN_LATENCY}\"" values.yaml
+if [[ ! -z "${INPUT_MEAN_LATENCY}" ]]; then
+  yq eval -i ".mean-latency = \"${INPUT_MEAN_LATENCY}\"" values.yaml
 fi
-if [[ -v "${P95_0}" ]]; then
-  yq eval -i ".p96\.0 = \"${P95_0}\"" values.yaml
+if [[ ! -z "${INPUT_P95_0}" ]]; then
+  yq eval -i ".p96\.0 = \"${INPUT_P95_0}\"" values.yaml
 fi
 
 echo ">>>>>>>>>>>>>>>>>>>>>"
