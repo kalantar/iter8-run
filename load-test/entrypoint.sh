@@ -25,7 +25,7 @@ if [[ ! -z "${INPUT_URL}" ]]; then
   SETS="$SETS --set url=\"${INPUT_URL}\""
 fi
 if [[ ! -z "${INPUT_NUMQUERIES}" ]]; then
-  SETS="$SETS --set numQueries=\"${INPUT_NUMQUERIES}\""
+  SETS="$SETS --set numQueries=${INPUT_NUMQUERIES}"
 fi
 # if [[ ! -z "${INPUT_DURATION}" ]]; then
 #   yq eval -i ".duration = \"${INPUT_DURATION}\"" values.yaml
@@ -52,13 +52,13 @@ fi
 #   yq eval -i ".percentiles = \"${INPUT_PERCENTILES}\"" values.yaml
 # fi
 if [[ ! -z "${INPUT_ERROR_RATE}" ]]; then
-  SETS="$SETS --set SLOs.error-rate=\"${INPUT_ERROR_RATE}\""
+  SETS="$SETS --set SLOs.error-rate=${INPUT_ERROR_RATE}"
 fi
 if [[ ! -z "${INPUT_MEAN_LATENCY}" ]]; then
-  SETS="$SETS --set SLOs.mean-latency=\"${INPUT_MEAN_LATENCY}\""
+  SETS="$SETS --set SLOs.mean-latency=${INPUT_MEAN_LATENCY}"
 fi
 if [[ ! -z "${INPUT_P95_0}" ]]; then
-  SETS="$SETS --set SLOs.p95=\"${INPUT_P95_0}\""
+  SETS="$SETS --set SLOs.p95=${INPUT_P95_0}"
 fi
 
 echo "Create experiment.yaml for inspection"
