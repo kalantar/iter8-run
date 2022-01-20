@@ -61,7 +61,7 @@ if [[ ! -z "${INPUT_P95_0}" ]]; then
   SETS="$SETS --set SLOs.p95=\"${INPUT_P95_0}\""
 fi
 
-"Create experiment.yaml for inspection"
+echo "Create experiment.yaml for inspection"
 $ITER8 run --dry $SETS
 cat experiment.yaml
 
