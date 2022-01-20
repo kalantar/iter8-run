@@ -9,7 +9,6 @@ inputs:
   numQueries:
     description: 'Number of requests sent to the app.' 
     required: false
-    default: "100"
   duration:
     description: |-
       Duration for which requests are sent to the app.
@@ -19,11 +18,9 @@ inputs:
   qps:
     description: 'Number of requests per second sent to each version. Default is 8.0'
     required: false
-    default: "8.0"
   connections:
     description: 'Number of parallel connections used to send requests. Default is 4'
     required: false
-    default: "4"
   payloadStr:
     description: |-
       String data to be sent as payload. 
@@ -45,7 +42,6 @@ inputs:
       with this content type header value. If payload is supplied, and this field is omitted, 
       it will be defaulted to "application/octet-stream".
     required: false
-    default: "application/octet-stream"
   # errorRanges:
   #   description: |-
   #     A list of error ranges. 
@@ -63,11 +59,9 @@ inputs:
   error_rate:
     description: 'Error rate'
     required: false
-    default: "0"
   mean_latency:
     description: 'Mean latency'
     required: false
-    default: "50"
   p25:
     description: '25th percentile latency'
     required: false
