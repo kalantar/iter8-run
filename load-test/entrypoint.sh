@@ -24,41 +24,59 @@ echo "Modify experiment using inputs"
 if [[ ! -z "${INPUT_URL}" ]]; then
   SETS="$SETS --set url=\"${INPUT_URL}\""
 fi
+
 if [[ ! -z "${INPUT_NUMQUERIES}" ]]; then
   SETS="$SETS --set numQueries=${INPUT_NUMQUERIES}"
 fi
-# if [[ ! -z "${INPUT_DURATION}" ]]; then
-#   yq eval -i ".duration = \"${INPUT_DURATION}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_QPS}" ]]; then
-#   yq eval -i ".qps = \"${QPS}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_CONNECTIONS}" ]]; then
-#   yq eval -i ".connections = \"${INPUT_CONNECTIONS}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_PAYLOADSTR}" ]]; then
-#   yq eval -i ".payloadStr = \"${INPUT_PAYLOADSTR}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_PAYLOADURL}" ]]; then
-#   yq eval -i ".payloadUrl = \"${INPUT_PAYLOADURL}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_CONTENTTYPE}" ]]; then
-#   yq eval -i ".contentType = \"${INPUT_CONTENTTYPE}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_ERRORRANGES}" ]]; then
-#   yq eval -i ".errorRanges = \"${INPUT_ERRORRANGES}\"" values.yaml
-# fi
-# if [[ ! -z "${INPUT_PERCENTILES}" ]]; then
-#   yq eval -i ".percentiles = \"${INPUT_PERCENTILES}\"" values.yaml
-# fi
+if [[ ! -z "${INPUT_DURATION}" ]]; then
+  SETS="$SETS --set duration=\"${INPUT_DURATION}\""
+fi
+if [[ ! -z "${INPUT_QPS}" ]]; then
+  SETS="$SETS --set qps=${INPUT_QPS}"
+fi
+if [[ ! -z "${INPUT_CONNECTIONS}" ]]; then
+  SETS="$SETS --set connections=${INPUT_CONNECTIONS}"
+fi
+
+if [[ ! -z "${INPUT_PAYLOADSTR}" ]]; then
+  SETS="$SETS --set payloadStr=\"${INPUT_PAYLOADSTR}\""
+fi
+if [[ ! -z "${INPUT_PAYLOADURL}" ]]; then
+  SETS="$SETS --set payloadUrl=\"${INPUT_PAYLOADURL}\""
+fi
+if [[ ! -z "${INPUT_CONTENTTYPE}" ]]; then
+  SETS="$SETS --set contentType=\"${INPUT_CONTENTTYPE}\""
+fi
+
 if [[ ! -z "${INPUT_ERROR_RATE}" ]]; then
   SETS="$SETS --set SLOs.error-rate=${INPUT_ERROR_RATE}"
 fi
 if [[ ! -z "${INPUT_MEAN_LATENCY}" ]]; then
   SETS="$SETS --set SLOs.mean-latency=${INPUT_MEAN_LATENCY}"
 fi
-if [[ ! -z "${INPUT_P95_0}" ]]; then
-  SETS="$SETS --set SLOs.p95=${INPUT_P95_0}"
+if [[ ! -z "${INPUT_P25}" ]]; then
+  SETS="$SETS --set SLOs.p25=${INPUT_P25}"
+fi
+if [[ ! -z "${INPUT_P50}" ]]; then
+  SETS="$SETS --set SLOs.p50=${INPUT_P50}"
+fi
+if [[ ! -z "${INPUT_P75}" ]]; then
+  SETS="$SETS --set SLOs.p75=${INPUT_P75}"
+fi
+if [[ ! -z "${INPUT_P90}" ]]; then
+  SETS="$SETS --set SLOs.p90=${INPUT_P90}"
+fi
+if [[ ! -z "${INPUT_P95}" ]]; then
+  SETS="$SETS --set SLOs.p95=${INPUT_P95}"
+fi
+if [[ ! -z "${INPUT_P97_5}" ]]; then
+  SETS="$SETS --set SLOs.p\'97\.5'=${INPUT_P97_5}"
+fi
+if [[ ! -z "${INPUT_P99}" ]]; then
+  SETS="$SETS --set SLOs.p99=${INPUT_P99}"
+fi
+if [[ ! -z "${INPUT_P99_9}" ]]; then
+  SETS="$SETS --set SLOs.p\'99\.9\'=${INPUT_P99_9}"
 fi
 
 echo "Create experiment.yaml for inspection"

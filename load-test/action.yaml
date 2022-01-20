@@ -5,6 +5,7 @@ inputs:
     description: 'HTTP(S) URL where the app receives GET or POST requests.'
     required: true
     default: http://example.com
+
   numQueries:
     description: 'Number of requests sent to the app.' 
     required: false
@@ -45,20 +46,20 @@ inputs:
       it will be defaulted to "application/octet-stream".
     required: false
     default: "application/octet-stream"
-  errorRanges:
-    description: |-
-      A list of error ranges. 
-      Each range specifies an upper and/or lower limit on HTTP status codes. 
-      HTTP responses that fall within these error ranges are considered error.
-      By default, status codes 400 and above are considered as errors.
-      The following setting says that HTTP status codes 500 or above are errors.
-    required: false
-  percentiles:
-    description: |-
-      A list of latency percentiles collected by this load-test.
-      The following precentiles are always collecteed: [50.0, 75.0, 90.0, 95.0, 99.0, 99.9] 
-      Additional percentile values can be specified in the following list
-    required: false
+  # errorRanges:
+  #   description: |-
+  #     A list of error ranges. 
+  #     Each range specifies an upper and/or lower limit on HTTP status codes. 
+  #     HTTP responses that fall within these error ranges are considered error.
+  #     By default, status codes 400 and above are considered as errors.
+  #     The following setting says that HTTP status codes 500 or above are errors.
+  #   required: false
+  # percentiles:
+  #   description: |-
+  #     A list of latency percentiles collected by this load-test.
+  #     The following precentiles are always collecteed: [50.0, 75.0, 90.0, 95.0, 99.0, 99.9] 
+  #     Additional percentile values can be specified in the following list
+  #   required: false
   error_rate:
     description: 'Error rate'
     required: false
@@ -67,10 +68,30 @@ inputs:
     description: 'Mean latency'
     required: false
     default: "50"
-  p95_0:
+  p25:
+    description: '25th percentile latency'
+    required: false
+  p50:
+    description: '50th percentile latency'
+    required: false
+  p75:
+    description: '75th percentile latency'
+    required: false
+  p90:
+    description: '90th percentile latency'
+    required: false
+  p95:
     description: '95th percentile latency'
     required: false
-    default: "200"
+  p97_5:
+    description: '97.5th percentile latency'
+    required: false
+  p99:
+    description: '99th percentile latency'
+    required: false
+  p99_9:
+    description: '99.9th percentile latency'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -84,7 +105,14 @@ runs:
   - ${{ inputs.payloadUrl }}
   - ${{ inputs.contentType }}
   - ${{ inputs.errorRanges }}
-  - ${{ inputs.percentiles }}
-  - ${{ inputs.error_rate }}
+  # - ${{ inputs.percentiles }}
+  # - ${{ inputs.error_rate }}
   - ${{ inputs.mean_latency }}
-  - ${{ inputs.p95_0 }}
+  - ${{ inputs.p25 }}
+  - ${{ inputs.p50 }}
+  - ${{ inputs.p75 }}
+  - ${{ inputs.p90 }}
+  - ${{ inputs.p95 }}
+  - ${{ inputs.p97_5 }}
+  - ${{ inputs.p99 }}
+  - ${{ inputs.p99_9 }}
