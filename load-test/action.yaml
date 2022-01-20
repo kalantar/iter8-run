@@ -36,7 +36,6 @@ inputs:
       Iter8 will send HTTP POST requests to versions with 
       data downloaded from this URL as the payload.
     required: false
-    default: "100"
   contentType:
     description: |-
       The type of the payload. Indicated using the Content-Type HTTP header value. 
