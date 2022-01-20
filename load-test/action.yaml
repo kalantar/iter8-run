@@ -1,0 +1,92 @@
+name: 'Run Iter8 Load Test'
+description: 'Run an Iter8 load test experiment'
+inputs:
+  url:
+    description: 'HTTP(S) URL where the app receives GET or POST requests.'
+    required: true
+    default: http://example.com
+  numQueries:
+    description: 'Number of requests sent to the app.' 
+    required: false
+    default: "100"
+  duration:
+    description: |-
+      Duration for which requests are sent to the app.
+      Value can be any Go duration string (https://pkg.go.dev/maze.io/x/duration#ParseDuration)
+      This field is ignored if `numQueries` is specified.'
+    required: false
+  qps:
+    description: 'Number of requests per second sent to each version. Default is 8.0'
+    required: false
+    default: "8.0"
+  connections:
+    description: 'Number of parallel connections used to send requests. Default is 4'
+    required: false
+    default: "4"
+  payloadStr:
+    description: |-
+      String data to be sent as payload. 
+      If this field is specified, Iter8 will send HTTP POST requests.
+      with this string as the payload.
+      This field is ignored if `payloadURL` is specified.
+    required: false
+  payloadUrl:
+    description: |-
+      URL of payload. If this field is specified, 
+      Iter8 will send HTTP POST requests to versions with 
+      data downloaded from this URL as the payload.
+    required: false
+    default: "100"
+  contentType:
+    description: |-
+      The type of the payload. Indicated using the Content-Type HTTP header value. 
+      This is intended to be used in conjunction with one of the `payload*` fields above. 
+      If this field is specified, Iter8 will send HTTP POST requests to versions 
+      with this content type header value. If payload is supplied, and this field is omitted, 
+      it will be defaulted to "application/octet-stream".
+    required: false
+    default: "application/octet-stream"
+  errorRanges:
+    description: |-
+      A list of error ranges. 
+      Each range specifies an upper and/or lower limit on HTTP status codes. 
+      HTTP responses that fall within these error ranges are considered error.
+      By default, status codes 400 and above are considered as errors.
+      The following setting says that HTTP status codes 500 or above are errors.
+    required: false
+    default: "400"
+  percentiles:
+    description: |-
+      A list of latency percentiles collected by this load-test.
+      The following precentiles are always collecteed: [50.0, 75.0, 90.0, 95.0, 99.0, 99.9] 
+      Additional percentile values can be specified in the following list
+    required: false
+  error_rate:
+    description: 'Error rate'
+    required: false
+    default: "0"
+  mean_latency:
+    description: 'Mean latency'
+    required: false
+    default: "50"
+  p95_0:
+    description: '95th percentile latency'
+    required: false
+    default: "200"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+  - ${{ inputs.url }}
+  - ${{ inputs.numQueries }}
+  - ${{ inputs.duration }}
+  - ${{ inputs.qps }}
+  - ${{ inputs.connections }}
+  - ${{ inputs.payloadStr}}
+  - ${{ inputs.payloadUrl }}
+  - ${{ inputs.contentType }}
+  - ${{ inputs.errorRanges }}
+  - ${{ inputs.percentiles }}
+  - ${{ inputs.error_rate }}
+  - ${{ inputs.mean_latency }}
+  - ${{ inputs.p95_0 }}

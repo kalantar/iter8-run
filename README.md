@@ -8,6 +8,6 @@
 
 ## Example Usage
 
-uses kalantar/iter8@v1
+uses iter8-tools/load-test@v1
 with:
-  experiment: kkkkkk    
+
