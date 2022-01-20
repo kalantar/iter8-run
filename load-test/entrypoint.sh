@@ -62,6 +62,7 @@ if [[ ! -z "${INPUT_P95_0}" ]]; then
 fi
 
 echo "Create experiment.yaml for inspection"
+echo $SETS
 $ITER8 run --dry $SETS
 cat experiment.yaml
 
