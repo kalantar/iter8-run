@@ -22,14 +22,14 @@ cd load-test
 SETS=""
 echo "Modify experiment using inputs"
 if [[ ! -z "${INPUT_URL}" ]]; then
-  SETS="$SETS --set url=\"${INPUT_URL}\""
+  SETS="$SETS --set url=${INPUT_URL}"
 fi
 
 if [[ ! -z "${INPUT_NUMQUERIES}" ]]; then
   SETS="$SETS --set numQueries=${INPUT_NUMQUERIES}"
 fi
 if [[ ! -z "${INPUT_DURATION}" ]]; then
-  SETS="$SETS --set duration=\"${INPUT_DURATION}\""
+  SETS="$SETS --set duration=${INPUT_DURATION}"
 fi
 if [[ ! -z "${INPUT_QPS}" ]]; then
   SETS="$SETS --set qps=${INPUT_QPS}"
