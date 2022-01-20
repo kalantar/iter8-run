@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+set -e
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ITER8="/bin/iter8"
 
@@ -55,7 +57,7 @@ if [[ ! -z "${INPUT_MEAN_LATENCY}" ]]; then
   yq eval -i ".mean-latency = \"${INPUT_MEAN_LATENCY}\"" values.yaml
 fi
 if [[ ! -z "${INPUT_P95_0}" ]]; then
-  yq eval -i ".p96\.0 = \"${INPUT_P95_0}\"" values.yaml
+  yq eval -i ".p\'95\.0\' = \"${INPUT_P95_0}\"" values.yaml
 fi
 
 echo ">>>>>>>>>>>>>>>>>>>>>"
@@ -77,7 +79,3 @@ $ITER8 report
 echo "Run completed; verifying completeness"
 # return 0 if satisfied; else non-zero
 $ITER8 assert -c completed -c noFailure -c slos
-rc=$?
-
-echo "Return code: $rc"
-exit $rc

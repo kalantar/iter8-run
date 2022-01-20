@@ -54,7 +54,6 @@ inputs:
       By default, status codes 400 and above are considered as errors.
       The following setting says that HTTP status codes 500 or above are errors.
     required: false
-    default: "400"
   percentiles:
     description: |-
       A list of latency percentiles collected by this load-test.
