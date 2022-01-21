@@ -82,7 +82,11 @@ fi
 
 
 if [[ ! -z "${INPUT_SLOS}" ]]; then
-  OPTIONS="$OPTIONS --set ${INPUT_SLOS}"
+  IFS=';' read -ra SLOS <<< "${INPUT_SLOS}"
+  for slo in "${SLOS[@]}"; do
+    # validate slo?
+    OPTIONS="$OPTIONS --set SLOs.$slo"
+  done
 fi
 
 
