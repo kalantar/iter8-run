@@ -73,7 +73,7 @@ if [[ ! -z "${INPUT_P99}" ]]; then
   OPTIONS="$OPTIONS --set SLOs.p99=${INPUT_P99}"
 fi
 if [[ ! -z "${INPUT_P99_9}" ]]; then
-  OPTIONS="$OPTIONS --set SLOs.p'99\.9'=${INPUT_P99_9}"
+  OPTIONS="$OPTIONS --set SLOs.p99\.9=${INPUT_P99_9}"
 fi
 
 if [[ ! -z "${INPUT_VALUES}" ]]; then
