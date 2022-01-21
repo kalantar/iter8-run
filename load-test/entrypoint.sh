@@ -80,6 +80,14 @@ if [[ ! -z "${INPUT_VALUES}" ]]; then
   OPTIONS="$OPTIONS -f ${INPUT_VALUES}"
 fi
 
+
+if [[ ! -z "${INPUT_SLOS}" ]]; then
+  OPTIONS="$OPTIONS --set ${INPUT_SLOS}"
+fi
+
+
+
+
 echo "Create experiment.yaml for inspection"
 echo "$ITER8 run --dry $OPTIONS"
 $ITER8 run --dry $OPTIONS

@@ -75,26 +75,9 @@ inputs:
   values:
     description: 'Path to file of configuration values.'
     required: false
-    default: 'values.yaml'
+  slos:
+    description: 'SLOs'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  # args:
-  # - ${{ inputs.url }}
-  # - ${{ inputs.numQueries }}
-  # - ${{ inputs.duration }}
-  # - ${{ inputs.qps }}
-  # - ${{ inputs.connections }}
-  # - ${{ inputs.payloadStr}}
-  # - ${{ inputs.payloadUrl }}
-  # - ${{ inputs.contentType }}
-  # - ${{ inputs.errorRanges }}
-  # - ${{ inputs.mean_latency }}
-  # - ${{ inputs.p25 }}
-  # - ${{ inputs.p50 }}
-  # - ${{ inputs.p75 }}
-  # - ${{ inputs.p90 }}
-  # - ${{ inputs.p95 }}
-  # - ${{ inputs.p97_5 }}
-  # - ${{ inputs.p99 }}
-  # - ${{ inputs.p99_9 }}
