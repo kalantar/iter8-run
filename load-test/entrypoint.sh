@@ -67,13 +67,13 @@ if [[ ! -z "${INPUT_P95}" ]]; then
   OPTIONS="$OPTIONS --set SLOs.p95=${INPUT_P95}"
 fi
 if [[ ! -z "${INPUT_P97_5}" ]]; then
-  OPTIONS="$OPTIONS --set SLOs.p\'97\.5\'=${INPUT_P97_5}"
+  OPTIONS="$OPTIONS --set SLOs.p'97\.5'=${INPUT_P97_5}"
 fi
 if [[ ! -z "${INPUT_P99}" ]]; then
   OPTIONS="$OPTIONS --set SLOs.p99=${INPUT_P99}"
 fi
 if [[ ! -z "${INPUT_P99_9}" ]]; then
-  OPTIONS="$OPTIONS --set SLOs.p\'99\.9\'=${INPUT_P99_9}"
+  OPTIONS="$OPTIONS --set SLOs.p'99\.9'=${INPUT_P99_9}"
 fi
 
 if [[ ! -z "${INPUT_VALUES}" ]]; then
