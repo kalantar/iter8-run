@@ -75,9 +75,6 @@ inputs:
   values:
     description: 'Path to file of configuration values.'
     required: false
-  slos:
-    description: 'SLOs'
-    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

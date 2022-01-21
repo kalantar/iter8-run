@@ -67,7 +67,7 @@ if [[ ! -z "${INPUT_P95}" ]]; then
   OPTIONS="$OPTIONS --set SLOs.p95=${INPUT_P95}"
 fi
 if [[ ! -z "${INPUT_P97_5}" ]]; then
-  OPTIONS="$OPTIONS --set SLOs.p\'97\.5'=${INPUT_P97_5}"
+  OPTIONS="$OPTIONS --set SLOs.p\'97\.5\'=${INPUT_P97_5}"
 fi
 if [[ ! -z "${INPUT_P99}" ]]; then
   OPTIONS="$OPTIONS --set SLOs.p99=${INPUT_P99}"
@@ -79,18 +79,6 @@ fi
 if [[ ! -z "${INPUT_VALUES}" ]]; then
   OPTIONS="$OPTIONS -f ${INPUT_VALUES}"
 fi
-
-
-if [[ ! -z "${INPUT_SLOS}" ]]; then
-  IFS=',' read -ra SLOS <<< "${INPUT_SLOS}"
-  for slo in "${SLOS[@]}"; do
-    # validate slo?
-    OPTIONS="$OPTIONS --set SLOs.$slo"
-  done
-fi
-
-
-
 
 echo "Create experiment.yaml for inspection"
 echo "$ITER8 run --dry $OPTIONS"
