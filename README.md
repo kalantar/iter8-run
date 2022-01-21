@@ -69,4 +69,3 @@ Set the duration of the load test to 20 seconds:
 | `p99` | Maximum acceptable 99th percentile latency | None |
 | `p99_9` | Maximum acceptable 99.9th percentile latency | None |
 | `values` | Path to file of configuration values. | `values.yaml` |
-
