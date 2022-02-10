@@ -14,10 +14,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: run httpbin
+      run: |
+        set -e
+        docker pull kennethreitz/httpbin
+        docker run -p 80:80 kennethreitz/httpbin &
+        while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://127.0.0.1/get)" != "200" ]]; do
+          sleep 5; 
+        done;
+
     - name: Prepare values.yaml file
       run: |
         cat << EOF > values.yaml
-          url: https://httpbin.org/get
+          url: http://127.0.0.1/get
           SLOs:
             error-rate: 0
             latency-mean: 100
