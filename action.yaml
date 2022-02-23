@@ -11,7 +11,7 @@ inputs:
   validateSLOs:
     description: 'Fail if SLOs fail'
     required: false
-    default: 'false'
+    default: 'true'
   logLevel:
     description: 'Logging level; valid values are trace, debug, info (default), warning, error, fatal'
     required: false
