@@ -8,7 +8,8 @@ inputs:
   valuesFile:
     description: 'Path to file of configuration values.'
     required: false
-  validateSLOs: 'Fail if SLOs fail'
+  validateSLOs:
+    description: 'Fail if SLOs fail'
     required: false
     default: 'false'
   logLevel:
