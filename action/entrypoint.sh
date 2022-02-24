@@ -15,12 +15,8 @@ fi
 
 # no need to cleanup
 
-# set LOG_LEVEL for iter8 commands
+echo "Set LOG_LEVEL for iter8 commands to: ${INPUT_LOGLEVEL}"
 export LOG_LEVEL="${INPUT_LOGLEVEL}"
-
-# echo "Fetch experiment"
-# $ITER8 hub -e ${INPUT_CHART}
-# cd $(basename ${INPUT_CHART})
 
 echo "Identify values file"
 OPTIONS=""
@@ -28,15 +24,7 @@ if [[ ! -z "${INPUT_VALUESFILE}" ]]; then
   OPTIONS="$OPTIONS -f ${INPUT_VALUESFILE}"
 fi
 
-$ITER8 launch -c ${INPUT_CHART} ${OPTIONS}
-
-# echo "Create experiment.yaml for inspection"
-# echo "$ITER8 run --dry $OPTIONS"
-# $ITER8 run --dry $OPTIONS
-# cat experiment.yaml
-
-# echo "Run Experiment"
-# $ITER8 run $OPTIONS
+LOG_LEVEL=${INPUT_LOGLEVEL} $ITER8 launch -c ${INPUT_CHART} ${OPTIONS}
 
 echo "Log result"
 $ITER8 report
