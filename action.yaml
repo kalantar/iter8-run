@@ -16,14 +16,11 @@ runs:
       run: | 
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         ARCH=$(uname -m | sed 's/i386/386/' | sed 's/x86_64/amd64/')
+        
         echo "OS = $OS"
         echo "ARCH = $ARCH"
         echo "runner.os = ${{ runner.os }}"
         echo "runner.arch = ${{ runner.arch }}"
-        # OS=$(${{ runner.os }} | tr '[:upper:]' '[:lower:]')
-        # ARCH=$(${{ runner.arch }} | sed 's/X86/386/' | sed 's/X64/amd64/')
-        # echo "OS = $OS"
-        # echo "ARCH = $ARCH"
         echo "github.action = ${{ github.action }}"
         echo "github.action_path = ${{ github.action_path }}"
         echo "github.action_ref = ${{ github.action_ref }}"
