@@ -23,19 +23,33 @@ jobs:
           sleep 5; 
         done;
 
-    - name: Prepare values.yaml file
-      run: |
-        cat << EOF > values.yaml
-          url: http://127.0.0.1/get
-          SLOs:
-            error-rate: 0
-            latency-mean: 100
-        EOF
-        cat values.yaml
+    # - name: Prepare values.yaml file
+    #   run: |
+    #     cat << EOF > values.yaml
+    #       url: http://127.0.0.1/get
+    #       SLOs:
+    #         error-rate: 0
+    #         latency-mean: 100
+    #     EOF
+    #     cat values.yaml
 
-    - name: Run load test
-      uses: ./load-test
-      with:
-        # chart: load-test-http
-        valuesFile: ../values.yaml
-        logLevel: trace
+    # - name: Run load test
+    #   uses: ./load-test
+    #   with:
+    #     # chart: load-test-http
+    #     valuesFile: ../values.yaml
+    #     logLevel: trace
+
+    - name: install Iter8 CLI
+      uses: iter8-tools/iter8@refs/pull/1224/merge
+    - name: version
+      run: | 
+        iter8 version
+    - name: launch
+      run: |
+        iter8 launch -c load-test-http --noDownload \
+        --set url="http://$HOST_IP/get"
+    - name: assert
+      run: |
+        iter8 assert -c completed -c nofailure
+

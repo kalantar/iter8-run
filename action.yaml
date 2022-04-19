@@ -1,31 +1,30 @@
-name: 'Run Iter8 Experiment'
-description: 'Run an Iter8 experiment'
-author: Michael Kalantar
+name: 'Iter8 Install'
+description: 'Install Iter8 CLI'
 inputs:
-  chart:
-    description: 'Name of experiment chart.'
-    required: true
-  valuesFile:
-    description: 'Path to file of configuration values.'
+  version:
+    description: "Version of iter8 to install"
     required: false
-  validateSLOs:
-    description: 'Should validate specified SLOs.'
-    required: false
-    default: 'true'
-  logLevel:
-    description: 'Logging level; valid values are trace, debug, info (default), warning, error, fatal, panic'
-    required: false
-    default: 'info'
-  chartRepo:
-    description: 'URL of experiment chart repository. This is an advanced option meant to enable third party Iter8 experiment repos.'
-    required: false
-  chartVersion:
-    description: 'Version constraint for chart. This is an advanced option meant to pin down Iter8 chart versions.'
-    required: false
-    default: ''
+    default: v0.10.5
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    - name: Install latest version of Iter8 CLI
+      run: | 
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        ARCH=$(uname -m | sed 's/i386/386/' | sed 's/x86_64/amd64/')
+        echo "github.action = ${{ github.action }}"
+        echo "github.action_path = ${{ github.action_path }}"
+        echo "github.action_ref = ${{ github.action_ref }}"
+        echo "github.action_repository = ${{ github.action_repository }}"
+        echo "github.action_status = ${{ github.action_status }}"
+        wget https://github.com/iter8-tools/iter8/releases/download/${{inputs.version}}/iter8-$OS-$ARCH.tar.gz
+        tar -xvf iter8-$OS-$ARCH.tar.gz
+        mv $OS-$ARCH/iter8 /usr/local/bin
+      shell: bash
 branding:
   icon: check-circle
   color: green
