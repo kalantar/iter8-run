@@ -41,7 +41,7 @@ jobs:
     #     logLevel: trace
 
     - name: install Iter8 CLI
-      uses: iter8-tools/iter8@refs/pull/1224/merge
+      uses: ./
     - name: version
       run: | 
         iter8 version
