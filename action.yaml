@@ -24,6 +24,8 @@ runs:
         RELEASE="${{ env.VERSION }}"
         if [ -z $RELEASE ]; then
           RELEASE=$(curl --silent "https://api.github.com/repos/iter8-tools/iter8/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        else
+          RELEASE=$(curl -s "https://api.github.com/repos/iter8-tools/iter8/releases" | jq -r '.[] | .tag_name' | grep $RELEASE | sort -Vr | head -1)
         fi
         echo "Installing Iter8 version $RELEASE"
 
