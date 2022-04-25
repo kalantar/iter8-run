@@ -11,7 +11,6 @@ runs:
       env:
         VERSION: ${{ github.action_ref }}
       run: | 
-        set -x
         # For details on context variables runner.os and runner.arch, see:
         #    https://docs.github.com/en/actions/learn-github-actions/contexts#runner-context
         # The returned values do not match those used by the build artifacts. 
@@ -23,7 +22,7 @@ runs:
         ARCH=$(echo ${{ runner.arch }} | sed 's/X86/386/' | sed 's/X64/amd64/')
         
         RELEASE="${{ env.VERSION }}"
-        if [ -z $RELEASE ]; then
+        if [ -z $RELEASE ] || [ $RELEASE -eq "latest" ]; then
           RELEASE=$(curl --silent "https://api.github.com/repos/iter8-tools/iter8/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         else
           RELEASE=$(curl -s "https://api.github.com/repos/iter8-tools/iter8/releases" | jq -r '.[] | .tag_name' | grep $RELEASE | sort -Vr | head -1)
@@ -35,12 +34,9 @@ runs:
         echo "Downloading $ASSET_URL"
         wget -q $ASSET_URL && rc=$? || rc=$?
         if [ $rc -eq 0 ]; then
-          echo "SUCCESS: downloaded $ASSET from $ASSET_URL"
-          ls
+          # echo "SUCCESS: downloaded $ASSET from $ASSET_URL"
           tar -xvf $ASSET
-          ls
           mv $OS-$ARCH/iter8 /usr/local/bin
-          which iter8
         else
           echo "ERROR: unable to download $ASSET from $ASSET_URL"
         fi
