@@ -11,6 +11,7 @@ runs:
       env:
         VERSION: ${{ github.action_ref }}
       run: | 
+        set -x
         # For details on context variables runner.os and runner.arch, see:
         #    https://docs.github.com/en/actions/learn-github-actions/contexts#runner-context
         # The returned values do not match those used by the build artifacts. 
