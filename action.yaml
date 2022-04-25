@@ -29,6 +29,7 @@ runs:
 
         ASSET="iter8-$OS-$ARCH.tar.gz"
         ASSET_URL="https://github.com/iter8-tools/iter8/releases/download/$RELEASE/$ASSET"
+        echo "Downloading $ASSET_URL"
         wget -q $ASSET_URL && rc=$? || rc=$?
         if [ $rc -eq 0 ]; then
           # tar -xvf $ASSET
