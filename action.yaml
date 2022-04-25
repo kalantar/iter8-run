@@ -22,7 +22,7 @@ runs:
         ARCH=$(echo ${{ runner.arch }} | sed 's/X86/386/' | sed 's/X64/amd64/')
         
         RELEASE="${{ env.VERSION }}"
-        if [ -z $RELEASE ] || [ $RELEASE -eq "stable" ]; then
+        if [ -z $RELEASE ] || [ $RELEASE = "stable" ]; then
           RELEASE=$(curl --silent "https://api.github.com/repos/iter8-tools/iter8/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         else
           RELEASE=$(curl -s "https://api.github.com/repos/iter8-tools/iter8/releases" | jq -r '.[] | .tag_name' | grep $RELEASE | sort -Vr | head -1)
