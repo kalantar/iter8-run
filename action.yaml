@@ -34,8 +34,8 @@ runs:
         echo "Downloading $ASSET_URL"
         wget -q $ASSET_URL && rc=$? || rc=$?
         if [ $rc -eq 0 ]; then
-          # tar -xvf $ASSET
-          # mv $OS-$ARCH/iter8 /usr/local/bin
+          tar -xvf $ASSET
+          mv $OS-$ARCH/iter8 /usr/local/bin
           echo "SUCCESS: downloaded $ASSET from $ASSET_URL"
         else
           echo "ERROR: unable to download $ASSET from $ASSET_URL"
